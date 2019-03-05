@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service("userInfoService")
 public class UserInfoServiceImpl implements UserInfoService {
     @Autowired
@@ -32,13 +33,14 @@ public class UserInfoServiceImpl implements UserInfoService {
         return userInfoDao.selectAll();
     }
 
-    public UserInfo selectUserByLoginName(String loginName) {
-        return userInfoDao.selectUserByLoginName(loginName);
+    public UserInfo selectUserByUserNickname(String userNickname) {
+        return userInfoDao.selectUserByLoginName(userNickname);
     }
 
     public List<UserInfo> selectUserByParams(UserInfo userInfo) {
         return userInfoDao.selectUserByParams(userInfo);
     }
+
     public int selectUserCount() {
         return userInfoDao.selectUserCount();
     }

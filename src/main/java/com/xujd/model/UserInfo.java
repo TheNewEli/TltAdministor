@@ -1,53 +1,58 @@
 package com.xujd.model;
 
 public class UserInfo {
-    private int id;
-    private String name;
-    private int age;
-    private String loginName;
-    private String password;
+    private int userId;
+    private String userNickname;
+    private String userPassword;
+    private int userSex;
+    private int userAuthorization;
     private int startRow;
     private int endRow;
+    private int index=0;
 
-    public int getId() {
-        return id;
+    public int getIndex() {
+        return index;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIndex(int index) {
+        this.index = index;
     }
 
-    public String getName() {
-        return name;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getAge() {
-        return age;
+    public String getUserNickname() {
+        return userNickname;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setUserNickname(String userNickname) {
+        this.userNickname = userNickname;
     }
 
-    public String getLoginName() {
-        return loginName;
+    public int getUserSex() {
+        return userSex;
     }
 
-    public void setLoginName(String loginName) {
-        this.loginName = loginName;
+    public void setUserSex(int userSex) {
+        this.userSex = userSex;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
+
+    public int getUserAuthorization() {return userAuthorization;}
+
+    public void setUserAuthorization(int userAuthorization) {this.userAuthorization = userAuthorization; }
 
     public int getStartRow() {
         return startRow;

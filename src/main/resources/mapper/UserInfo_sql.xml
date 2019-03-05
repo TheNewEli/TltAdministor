@@ -4,45 +4,49 @@
 <!-- 设置为UserDao接口方法提供sql语句配置 -->
 <mapper namespace="com.xujd.dao.UserInfoDao">
     <insert id="insertUser" parameterType="UserInfo">
-        INSERT INTO USERINFO(NAME,AGE,LOGINNAME,PASSWORD)VALUES(#{name},#{age},#{loginName},#{password})
+        INSERT INTO user(user_id,user_nickname,user_password,user_sex,user_authorization)VALUES(#{userId},#{userNickname},#{userPassword},#{userSex},#{userAuthorization})
     </insert>
 
     <delete id="deleteUser" parameterType="int">
-        DELETE FROM USERINFO WHERE ID=#{id}
+        DELETE FROM user WHERE user_id=#{userId}
     </delete>
     <update id="updateUser" parameterType="UserInfo">
-        UPDATE USERINFO
+        UPDATE user
         <set>
-            <if test="name!=null and name!=''">NAME =#{name},</if>
-            <if test="age!=null and age!=''">AGE =#{age},</if>
-            <if test="loginName!=null and loginName!=''">LOGINNAME =#{loginName},</if>
-            <if test="password!=null and password!=''">PASSWORD =#{password}</if>
+            <if test="userId!=null and userId!=''">user_id= #{userId},</if>
+            <if test="userNickname!=null and userNickname!=''">user_nickname= #{userNickname},</if>
+            <if test="userPassword!=null and userPassword!=''">user_password= #{userPassword},</if>
+            <if test="userSex!=null">user_sex= #{userSex},</if>
+            <if test="userAuthorization!=null">user_authorization= #{userAuthorization}</if>
         </set>
-        where ID=#{id}
+        where user_id=#{userId}
     </update>
 
     <select id="selectUserById" resultType="UserInfo" parameterType="int">
-        SELECT * FROM USERINFO WHERE id = #{id}
+        SELECT * FROM user WHERE user_id = #{userId}
     </select>
 
     <select id="selectAll" resultType="UserInfo">
-        SELECT * FROM USERINFO order by id desc
+        SELECT * FROM user order by user_id DESC
     </select>
 
     <select id="selectUserByLoginName" parameterType="java.lang.String" resultType="UserInfo">
-        SELECT * FROM USERINFO WHERE LOGINNAME=#{loginName}
+        SELECT * FROM user WHERE user_nickname=#{loginName}
     </select>
 
     <select id="selectUserByParams" resultType="UserInfo" parameterType="UserInfo">
-        SELECT * FROM USERINFO
+        SELECT * FROM user
         <where>
-            <if test="name!=null and name!=''">and NAME=#{name}</if>
-            <if test="loginName!=null and loginName!=''">and LOGINNAME=#{loginName}</if>
+            <if test="userId!=null and userId!=''">user_id= #{userId},</if>
+            <if test="userNickname!=null and userNickname!=''">user_nickname= #{userNickname},</if>
+            <if test="userPassword!=null and userPassword!=''">user_password= #{userPassword},</if>
+            <if test="userSex!=null and userSex!=''">user_sex= #{userSex},</if>
+            <if test="userAuthorization!=null and userAuthorization!=''">user_authorization= #{userAuthorization},</if>
         </where>
-        order by id desc limit #{startRow},#{endRow}
+            order by user_id desc limit #{startRow},#{endRow}
     </select>
 
     <select id="selectUserCount" resultType="int">
-        select count(*) from USERINFO
+        select count(*) from user
     </select>
 </mapper>

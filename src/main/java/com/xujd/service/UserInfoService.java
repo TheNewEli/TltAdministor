@@ -38,7 +38,7 @@ public interface UserInfoService {
      * @param
      * @return
      */
-    UserInfo selectUserByLoginName(String loginName);
+    UserInfo selectUserByUserNickname(String userNickname);
 
     /**
      * 根据查询条件获取用户

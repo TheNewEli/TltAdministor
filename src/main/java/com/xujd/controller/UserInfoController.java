@@ -31,9 +31,6 @@ public class UserInfoController {
             UserInfo user = userInfoService.selectUserByUserNickname(userInfo.getUserNickname());
             if (user != null) {
                 model.addAttribute("msg", "插入操作失败,该登入名已存在！");
-            }else {
-                userInfoService.insertUser(userInfo);
-                model.addAttribute("msg", "插入操作成功！");
             }
 
 
@@ -42,6 +39,9 @@ public class UserInfoController {
                 userInfo.setUserId(Integer.parseInt(myid));
                 userInfoService.updateUser(userInfo);
                 model.addAttribute("msg", "更新操作成功！");
+            }else {
+                userInfoService.insertUser(userInfo);
+                model.addAttribute("msg", "插入操作成功！");
             }
 
 
@@ -123,15 +123,14 @@ public class UserInfoController {
         //分页查询数据
         List<UserInfo> userList = userInfoService.selectUserByParams(userInfo);
 
-        for (int i = 0; i < userList.size(); i++) {
-            userList.get(i).setIndex(i);
-        }
+
         //设置所有用户数量  如果有查询条件则以查询结果数量为准，不然为所有数量
         if (userInfo.getUserNickname() != null && !"".equals(userInfo.getUserNickname())) {
             page.setTotalRecord(userList.size());
         } else {
             page.setTotalRecord(count);
         }
+
         model.addAttribute("page1", page);
         model.addAttribute("userList", userList);
         model.addAttribute("userInfo1", userInfo);

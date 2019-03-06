@@ -86,11 +86,11 @@
         <div style="margin-left: 80px;">
             姓名：<input type="text" name="userNickname" id="name" value="${userInfo1.userNickname}" class="form-control"
                       style="width: 120px;">
-            账号：<input type="text" name="userId" id="loginName" value="${userInfo1.userId}" class="form-control"
+            账号：<input type="text" name="userId" id="userId" value="${userInfo1.userId}" class="form-control"
                       style="width: 120px;">
             <input type="button" onclick="findData();" class="btn btn-info" value="查询"/>
             <input type="button" onclick="clearP();" class="btn btn-info" value="清空"/>
-            <input type="button" data-toggle="modal" data-target="#addModal" class="btn btn-info" value="新增"/>
+            <input type="button" data-toggle="modal" data-target="#addModal" class="btn btn-primary" value="新增"/>
         </div>
         <hr style="margin-top: 10px;"/>
         <div style="margin-left: 20px;">
@@ -154,7 +154,8 @@
                     </div>
                     <div class="form-group">
                         <i class="fa fa-user fa-lg"></i>
-                        <select class="form-control required" name="userSex" id="sex1" autofocus="autofocus" required="required">
+                        <select class="form-control required" name="userSex" id="sex1" autofocus="autofocus"
+                                required="required">
                             <option value="1">男</option>
                             <option value="0">女</option>
                         </select>
@@ -255,7 +256,8 @@
                     </div>
                     <div class="form-group">
                         <i class="fa fa-user fa-lg"></i>
-                        <select class="form-control required" name="userAuthorization" id="authorization2" autofocus="autofocus">
+                        <select class="form-control required" name="user_authorization" id="authorization2"
+                                autofocus="autofocus">
                             <option value="0">普通用户</option>
                             <option value="1">特权用户</option>
                         </select>

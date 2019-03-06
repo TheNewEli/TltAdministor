@@ -13,11 +13,14 @@
     <update id="updateUser" parameterType="UserInfo">
         UPDATE user
         <set>
-            <if test="userId!=null and userId!=''">user_id= #{userId},</if>
-            <if test="userNickname!=null and userNickname!=''">user_nickname= #{userNickname},</if>
-            <if test="userPassword!=null and userPassword!=''">user_password= #{userPassword},</if>
-            <if test="userSex!=null">user_sex= #{userSex},</if>
-            <if test="userAuthorization!=null">user_authorization= #{userAuthorization}</if>
+            <trim suffixOverrides=",">
+
+                <if test="userId!=null and userId!=''">user_id= #{userId},</if>
+                <if test="userNickname!=null and userNickname!=''">user_nickname= #{userNickname},</if>
+                <if test="userPassword!=null and userPassword!=''">user_password= #{userPassword},</if>
+                <if test="userSex!=null">user_sex= #{userSex},</if>
+                <if test="userAuthorization!=null">user_authorization= #{userAuthorization},</if>
+            </trim>
         </set>
         where user_id=#{userId}
     </update>
@@ -37,13 +40,16 @@
     <select id="selectUserByParams" resultType="UserInfo" parameterType="UserInfo">
         SELECT * FROM user
         <where>
-            <if test="userId!=null and userId!=''">user_id= #{userId},</if>
-            <if test="userNickname!=null and userNickname!=''">user_nickname= #{userNickname},</if>
-            <if test="userPassword!=null and userPassword!=''">user_password= #{userPassword},</if>
-            <if test="userSex!=null and userSex!=''">user_sex= #{userSex},</if>
-            <if test="userAuthorization!=null and userAuthorization!=''">user_authorization= #{userAuthorization},</if>
+            <trim suffixOverrides=",">
+                <if test="userId!=null and userId!=''">user_id= #{userId},</if>
+                <if test="userNickname!=null and userNickname!=''">user_nickname like #{userNickname},</if>
+                <if test="userPassword!=null and userPassword!=''">user_password= #{userPassword},</if>
+                <if test="userSex!=null and userSex!=''">user_sex= #{userSex},</if>
+                <if test="userAuthorization!=null and userAuthorization!=''">user_authorization= #{userAuthorization},
+                </if>
+            </trim>
         </where>
-            order by user_id desc limit #{startRow},#{endRow}
+        order by user_id desc limit #{startRow},#{endRow}
     </select>
 
     <select id="selectUserCount" resultType="int">

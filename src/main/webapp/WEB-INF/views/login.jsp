@@ -18,13 +18,13 @@
     <script type="text/javascript" src="<%=basePath%>js/login.js"></script>
     <style type="text/css">
         body {
-            background: url(<%=basePath%>img/4.jpg) no-repeat;
+            background: url(<%=basePath%>img/1.jpg) no-repeat;
             background-size: cover;
             font-size: 16px;
         }
 
         .form {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(200, 200, 200, 0.4);
             width: 400px;
             margin: 100px auto;
         }
@@ -66,25 +66,26 @@
 <body>
 <div class="container">
     <div class="form row">
-        <form action="<%=basePath%>admin/login" method="post" class="form-horizontal col-sm-offset-3 col-md-offset-3" id="login_form">
-            <h3 class="form-title">Login to your account</h3>
+        <form action="<%=basePath%>admin/login" method="post" class="form-horizontal col-sm-offset-3 col-md-offset-3"
+              id="login_form">
+            <h3 class="form-title">TLT管理员登录</h3>
             <div class="col-sm-9 col-md-9">
                 <div class="form-group">
                     <i class="fa fa-user fa-lg"></i>
-                    <input class="form-control required" type="text" placeholder="LoginName" name="adminAccount"
+                    <input class="form-control required" type="text" placeholder="管理员名称" name="adminAccount"
                            autofocus="autofocus" maxlength="20"/>
                 </div>
                 <div class="form-group">
                     <i class="fa fa-lock fa-lg"></i>
-                    <input class="form-control required" type="password" placeholder="Password" name="adminPassword"
+                    <input class="form-control required" type="password" placeholder="管理员密码" name="adminPassword"
                            maxlength="8"/>
                 </div>
                 <div class="form-group">
                     <label class="checkbox">
-                        <input type="checkbox" name="remember" value="1"/> Remember me
+                        <input type="checkbox" name="remember" value="1"/>记住密码
                     </label>
                     <hr/>
-                    <a href="javascript:;" id="register_btn" class="">Create an account</a>
+                    <%--<a href="javascript:;" id="register_btn" class="">Create an account</a>--%>
                 </div>
                 <div class="form-group">
                     <input type="submit" class="btn btn-success pull-right" value="Login "/>

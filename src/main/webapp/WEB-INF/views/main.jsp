@@ -40,7 +40,7 @@
 
         function loginOut(obj){
             if (confirm('您确定要退出系统吗？')) {
-                obj.href = "<%=basePath%>user/loginOut";
+                obj.href = "<%=basePath%>admin/loginOut";
                 obj.onclick = "";
                 obj.click();
             }

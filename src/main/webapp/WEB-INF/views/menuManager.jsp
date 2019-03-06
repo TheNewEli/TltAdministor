@@ -5,6 +5,5 @@
 </head>
 <body>
 <div style="text-align: center">这里是菜单管理页面！</div>
-<div><h1>欢迎访问</h1></div>
 </body>
 </html>

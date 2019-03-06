@@ -1,8 +1,8 @@
-package com.xujd.service.Impl;
+package online.caoyu.service.Impl;
 
-import com.xujd.dao.UserInfoDao;
-import com.xujd.model.UserInfo;
-import com.xujd.service.UserInfoService;
+import online.caoyu.dao.UserInfoDao;
+import online.caoyu.model.UserInfo;
+import online.caoyu.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

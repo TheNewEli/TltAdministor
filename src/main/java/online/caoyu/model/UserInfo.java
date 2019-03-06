@@ -1,4 +1,4 @@
-package com.xujd.model;
+package online.caoyu.model;
 
 public class UserInfo {
     private int userId;

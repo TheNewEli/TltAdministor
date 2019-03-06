@@ -1,6 +1,6 @@
-package com.xujd.dao;
+package online.caoyu.dao;
 
-import com.xujd.model.AdminInfo;
+import online.caoyu.model.AdminInfo;
 
 public interface AdminInfoDao {
     /**

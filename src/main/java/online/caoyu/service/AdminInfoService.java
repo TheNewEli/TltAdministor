@@ -1,6 +1,6 @@
-package com.xujd.service;
+package online.caoyu.service;
 
-import com.xujd.model.AdminInfo;
+import online.caoyu.model.AdminInfo;
 
 public interface AdminInfoService {
 

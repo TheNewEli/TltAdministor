@@ -1,4 +1,4 @@
-package com.xujd.model;
+package online.caoyu.model;
 
 import java.util.List;
 

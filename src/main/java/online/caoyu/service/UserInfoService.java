@@ -1,15 +1,15 @@
-package com.xujd.dao;
+package online.caoyu.service;
 
-import com.xujd.model.UserInfo;
-import org.springframework.stereotype.Repository;
+import online.caoyu.model.UserInfo;
 
 import java.util.List;
-public interface UserInfoDao {
+
+public interface UserInfoService {
     /**
      *添加用户信息
-     * @param userInfo
+     * @param user
      */
-    void insertUser(UserInfo userInfo);
+    void insertUser(UserInfo user);
 
     /**
      * 删除用户
@@ -19,9 +19,9 @@ public interface UserInfoDao {
 
     /**
      * 修改用户信息
-     * @param userInfo
+     * @param user
      */
-    void updateUser(UserInfo userInfo);
+    void updateUser(UserInfo user);
     /**
      * 根据ID获取用户信息
      * @param id
@@ -33,13 +33,12 @@ public interface UserInfoDao {
      * @return
      */
     List<UserInfo> selectAll();
-
     /**
      * 根据登入名获取用户
      * @param
      * @return
      */
-    UserInfo selectUserByLoginName(String loginName);
+    UserInfo selectUserByUserNickname(String userNickname);
 
     /**
      * 根据查询条件获取用户

@@ -1,4 +1,4 @@
-package com.xujd.controller;
+package online.caoyu.controller;
 
 public class BaseController {
 }

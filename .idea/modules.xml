@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/xujd-ssm.iml" filepath="$PROJECT_DIR$/xujd-ssm.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TltAdmin.iml" filepath="$PROJECT_DIR$/TltAdmin.iml" />
     </modules>
   </component>
 </project>

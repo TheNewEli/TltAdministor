@@ -1,8 +1,8 @@
-package com.xujd.controller;
+package online.caoyu.controller;
 
-import com.xujd.model.PageUtil;
-import com.xujd.model.UserInfo;
-import com.xujd.service.UserInfoService;
+import online.caoyu.model.PageUtil;
+import online.caoyu.model.UserInfo;
+import online.caoyu.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +38,7 @@ public class UserInfoController {
             if (myid != null && !"".equals(myid)) {//myid存在表示编辑操作
                 userInfo.setUserId(Integer.parseInt(myid));
                 userInfoService.updateUser(userInfo);
+                System.out.println("authoriz"+userInfo.getUserAuthorization());
                 model.addAttribute("msg", "更新操作成功！");
             }else {
                 userInfoService.insertUser(userInfo);

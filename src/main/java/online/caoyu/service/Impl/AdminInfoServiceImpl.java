@@ -1,8 +1,8 @@
-package com.xujd.service.Impl;
+package online.caoyu.service.Impl;
 
-import com.xujd.dao.AdminInfoDao;
-import com.xujd.model.AdminInfo;
-import com.xujd.service.AdminInfoService;
+import online.caoyu.dao.AdminInfoDao;
+import online.caoyu.model.AdminInfo;
+import online.caoyu.service.AdminInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

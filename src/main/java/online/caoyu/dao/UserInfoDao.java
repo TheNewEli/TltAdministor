@@ -1,15 +1,14 @@
-package com.xujd.service;
+package online.caoyu.dao;
 
-import com.xujd.model.UserInfo;
+import online.caoyu.model.UserInfo;
 
 import java.util.List;
-
-public interface UserInfoService {
+public interface UserInfoDao {
     /**
      *添加用户信息
-     * @param user
+     * @param userInfo
      */
-    void insertUser(UserInfo user);
+    void insertUser(UserInfo userInfo);
 
     /**
      * 删除用户
@@ -19,9 +18,9 @@ public interface UserInfoService {
 
     /**
      * 修改用户信息
-     * @param user
+     * @param userInfo
      */
-    void updateUser(UserInfo user);
+    void updateUser(UserInfo userInfo);
     /**
      * 根据ID获取用户信息
      * @param id
@@ -33,12 +32,13 @@ public interface UserInfoService {
      * @return
      */
     List<UserInfo> selectAll();
+
     /**
      * 根据登入名获取用户
      * @param
      * @return
      */
-    UserInfo selectUserByUserNickname(String userNickname);
+    UserInfo selectUserByLoginName(String loginName);
 
     /**
      * 根据查询条件获取用户

@@ -1,7 +1,7 @@
-package com.xujd.controller;
+package online.caoyu.controller;
 
-import com.xujd.model.AdminInfo;
-import com.xujd.service.AdminInfoService;
+import online.caoyu.model.AdminInfo;
+import online.caoyu.service.AdminInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

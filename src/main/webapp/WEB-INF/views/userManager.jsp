@@ -66,7 +66,7 @@
                     $("#editModal").modal("show");
                     $("#name2").val(data.userNickname);
                     $("#sex2").val(data.userSex);
-                    $("#authorization2").val(data.userAuthorization);
+                    $("#authorization2").val(data.roleName);
                     $("#password2").val(data.userPassword);
                     $("#rpassword2").val(data.userPassword);
                     $("#myid").val(data.userId);
@@ -102,7 +102,7 @@
                     <th style="text-align: center">昵称</th>
                     <th style="text-align: center">密码</th>
                     <th style="text-align: center">性别</th>
-                    <th style="text-align: center">权限</th>
+                    <th style="text-align: center">角色</th>
                     <th style="text-align: center">操作</th>
                 </tr>
                 </thead>
@@ -114,8 +114,13 @@
                             <td>${user.userId}</td>
                             <td>${user.userNickname}</td>
                             <td>${user.userPassword}</td>
-                            <td>${user.userSex}</td>
-                            <td>${user.userAuthorization}</td>
+                            <c:if test="${user.userSex==1}">
+                                <td>男</td>
+                            </c:if>
+                            <c:if test="${user.userSex==0}">
+                                <td>女</td>
+                            </c:if>
+                            <td>${user.roleName}</td>
                             <td>
                                 <button type="button" class="btn btn-success" onclick="edit('${user.userId }')">编辑
                                 </button>
@@ -191,83 +196,43 @@
          aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <%--<div class="modal-header">--%>
-                <%--<button type="button" class="close" data-dismiss="modal" aria-hidden="true">--%>
-                <%--×--%>
-                <%--</button>--%>
-                <%--<h4 id="mytitle1" class="modal-title" id="myModalLabel1">--%>
-                <%--编辑用户--%>
-                <%--</h4>--%>
-                <%--</div>--%>
-                <%--<div class="modal-body">--%>
-                <%--<div class="form-group">--%>
-                <%--<i class="fa fa-user fa-lg"></i>--%>
-                <%--<input class="form-control required" type="text" id="name2" placeholder="用户昵称"--%>
-                <%--name="userNickname" autofocus="autofocus"/>--%>
-                <%--</div>--%>
-                <%--<div class="form-group">--%>
-                <%--<i class="fa fa-user fa-lg"></i>--%>
-                <%--<select class="form-control required" name="userSex" id="sex2" autofocus="autofocus">--%>
-                <%--<option value="1">男</option>--%>
-                <%--<option value="0">女</option>--%>
-                <%--</select>--%>
-                <%--</div>--%>
-                <%--<div class="form-group">--%>
-                <%--<i class="fa fa-user fa-lg"></i>--%>
-                <%--<select class="form-control required" name="userAuthorization" id="authorization2"--%>
-                <%--autofocus="autofocus">--%>
-                <%--<option value="0">普通用户</option>--%>
-                <%--<option value="1">特权用户</option>--%>
-                <%--</select>--%>
-                <%--</div>--%>
-
-                <%--<div class="form-group">--%>
-                <%--<i class="fa fa-lock fa-lg"></i>--%>
-                <%--<input class="form-control required" placeholder="用户密码" id="password2" name="userPassword"/>--%>
-                <%--</div>--%>
-                <%--</div>--%>
-                <%--<div class="modal-footer">--%>
-                <%--<button type="button" class="btn btn-default" data-dismiss="modal">关闭--%>
-                <%--</button>--%>
-                <%--<button type="submit" class="btn btn-info">--%>
-                <%--确认--%>
-                <%--</button>--%>
-                <%--</div>--%>
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
                         ×
                     </button>
                     <h4 id="mytitle1" class="modal-title" id="myModalLabel1">
-                        新增用户
+                        编辑用户
                     </h4>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
+                    <div class="form-group">用户昵称
                         <i class="fa fa-user fa-lg"></i>
                         <input class="form-control required" type="text" id="name2" placeholder="用户昵称"
                                name="userNickname" autofocus="autofocus"/>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group">性别
                         <i class="fa fa-user fa-lg"></i>
                         <select class="form-control required" name="userSex" id="sex2" autofocus="autofocus">
                             <option value="1">男</option>
                             <option value="0">女</option>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group">角色
                         <i class="fa fa-user fa-lg"></i>
-                        <select class="form-control required" name="userAuthorization" id="authorization2"
-                                autofocus="autofocus">
-                            <option value="0">普通用户</option>
-                            <option value="1">特权用户</option>
+                        <select class="form-control required" name="roleName" id="authorization2" autofocus="autofocus">
+                            <c:if test="${!empty roleInfoList }">
+                                <c:forEach items="${roleInfoList}" var="role" varStatus="status">
+                                    <option value="${role.roleName}">${role.roleName}</option>
+                                </c:forEach>
+                            </c:if>
                         </select>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group">密码
                         <i class="fa fa-lock fa-lg"></i>
                         <input class="form-control required" placeholder="用户密码" id="password2" name="userPassword"/>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group">重复密码
                         <i class="fa fa-check fa-lg"></i>
                         <input class="form-control required" placeholder="重复密码" id="rpassword2" name="rpassword"/>
                     </div>

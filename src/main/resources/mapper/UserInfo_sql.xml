@@ -4,7 +4,7 @@
 <!-- 设置为UserDao接口方法提供sql语句配置 -->
 <mapper namespace="online.caoyu.dao.UserInfoDao">
     <insert id="insertUser" parameterType="UserInfo">
-        INSERT INTO user(user_id,user_nickname,user_password,user_sex,user_authorization)VALUES(#{userId},#{userNickname},#{userPassword},#{userSex},#{userAuthorization})
+        INSERT INTO user(user_id,user_nickname,user_password,user_sex)VALUES(#{userId},#{userNickname},#{userPassword},#{userSex})
     </insert>
 
     <delete id="deleteUser" parameterType="int">
@@ -14,12 +14,11 @@
         UPDATE user
         <set>
             <trim suffixOverrides=",">
-
                 <if test="userId!=null and userId!=''">user_id= #{userId},</if>
                 <if test="userNickname!=null and userNickname!=''">user_nickname= #{userNickname},</if>
                 <if test="userPassword!=null and userPassword!=''">user_password= #{userPassword},</if>
                 <if test="userSex!=null">user_sex= #{userSex},</if>
-                <if test="userAuthorization!=null">user_authorization= #{userAuthorization},</if>
+                <if test="roleName!=null">role_name= #{roleName},</if>
             </trim>
         </set>
         where user_id=#{userId}
@@ -45,7 +44,7 @@
                 <if test="userNickname!=null and userNickname!=''">user_nickname like #{userNickname},</if>
                 <if test="userPassword!=null and userPassword!=''">user_password= #{userPassword},</if>
                 <if test="userSex!=null and userSex!=''">user_sex= #{userSex},</if>
-                <if test="userAuthorization!=null and userAuthorization!=''">user_authorization= #{userAuthorization},
+                <if test="roleName!=null and roleName!=''">role_name= #{roleName},
                 </if>
             </trim>
         </where>

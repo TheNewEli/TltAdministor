@@ -77,8 +77,8 @@
             <div>
                 <ul class="nav navbar-nav" id="top" style="font-size: 16px;">
                     <li id="userManager"><a href="javascript:void(0)" onclick="menuClick(1,'<%=basePath%>user/selectAll')">用户管理</a></li>
-                    <li id="roleManager"><a href="javascript:void(0)" onclick="menuClick(2,'<%=basePath%>user/roleManager')">权限管理</a></li>
-                    <li id="menuManager"><a href="javascript:void(0)" onclick="menuClick(3,'<%=basePath%>user/menuManager')">菜单管理</a></li>
+                    <li id="roleManager"><a href="javascript:void(0)" onclick="menuClick(2,'<%=basePath%>role/selectAll')">角色管理</a></li>
+                    <li id="menuManager"><a href="javascript:void(0)" onclick="menuClick(3,'<%=basePath%>user/dataResourceManager')">数据源管理</a></li>
                 </ul>
             </div>
         </div>

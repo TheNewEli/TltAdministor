@@ -5,7 +5,7 @@ public class UserInfo {
     private String userNickname;
     private String userPassword;
     private int userSex;
-    private int userAuthorization;
+    private String roleName;
     private int startRow;
     private int endRow;
 
@@ -42,9 +42,9 @@ public class UserInfo {
         this.userPassword = userPassword;
     }
 
-    public int getUserAuthorization() {return userAuthorization;}
+    public String getRoleName() {return roleName;}
 
-    public void setUserAuthorization(int userAuthorization) {this.userAuthorization = userAuthorization; }
+    public void setRoleName(String roleName) {this.roleName = roleName; }
 
     public int getStartRow() {
         return startRow;

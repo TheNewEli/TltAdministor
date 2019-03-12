@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为RoleDao接口方法提供sql语句配置 -->
+<mapper namespace="online.caoyu.dao.RoleInfoDao">
+    <insert id="insertRole" parameterType="RoleInfo">
+        INSERT INTO role(role_name, geographical_search, hot_job_search, salary_information_search, occupation_ratio_display, education_situation_display, talent_salary_display, geographic_type_display)VALUES(#{roleName},#{geographicalSearch},#{hotJobSearch},#{salaryInformationSearch},#{occupationRatioDisplay},#{educationSituationDisplay},#{talentSalaryDisplay},#{geographicTypeDisplay})
+    </insert>
+
+    <delete id="deleteRole" parameterType="String">
+        DELETE FROM role WHERE role_name=#{roleName}
+    </delete>
+
+    <update id="updateRole" parameterType="RoleInfo">
+        UPDATE role
+        <set>
+            <trim suffixOverrides=",">
+                <if test="roleName!=null and roleName!=''">role_name= #{roleName},</if>
+                <if test="geographicalSearch!=null">geographical_search= #{geographicalSearch},</if>
+                <if test="hotJobSearch!=null">hot_job_search= #{hotJobSearch},</if>
+                <if test="salaryInformationSearch!=null">salary_information_search= #{salaryInformationSearch},</if>
+                <if test="occupationRatioDisplay!=null">occupation_ratio_display= #{occupationRatioDisplay},</if>
+                <if test="educationSituationDisplay!=null">education_situation_display= #{educationSituationDisplay},
+                </if>
+                <if test="talentSalaryDisplay!=null">talent_salary_display= #{talentSalaryDisplay},</if>
+                <if test="geographicTypeDisplay!=null">geographic_type_display= #{geographicTypeDisplay},</if>
+            </trim>
+        </set>
+        where role_name=#{roleName}
+    </update>
+
+    <select id="selectRoleByName" resultType="RoleInfo" parameterType="String">
+        SELECT * FROM role WHERE role_name = #{roleName}
+    </select>
+
+    <select id="selectAll" resultType="RoleInfo">
+        SELECT * FROM role order by role_name DESC
+    </select>
+
+    <select id="selectRoleByParams" resultType="RoleInfo" parameterType="RoleInfo">
+        SELECT * FROM role
+        <where>
+            <trim suffixOverrides="and">
+                <if test="roleName!=null and roleName!=''">role_name= #{roleName} and</if>
+                <if test="geographicalSearch!=0">geographical_search= #{geographicalSearch} and</if>
+                <if test="hotJobSearch!=0">hot_job_search= #{hotJobSearch}and</if>
+                <if test="salaryInformationSearch!=0">salary_information_search= #{salaryInformationSearch}and</if>
+                <if test="occupationRatioDisplay!=0">occupation_ratio_display= #{occupationRatioDisplay}and</if>
+                <if test="educationSituationDisplay!=0">education_situation_display= #{educationSituationDisplay}and
+                </if>
+                <if test="talentSalaryDisplay!=0">talent_salary_display= #{talentSalaryDisplay}and</if>
+                <if test="geographicTypeDisplay!=0">geographic_type_display= #{geographicTypeDisplay}and</if>
+            </trim>
+        </where>
+        order by role_name desc limit #{startRow},#{endRow}
+    </select>
+
+    <select id="selectRoleCount" resultType="int">
+        select count(*) from role
+    </select>
+</mapper>

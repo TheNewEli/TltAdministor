@@ -1,7 +1,9 @@
 package online.caoyu.controller;
 
 import online.caoyu.model.PageUtil;
+import online.caoyu.model.RoleInfo;
 import online.caoyu.model.UserInfo;
+import online.caoyu.service.RoleInfoService;
 import online.caoyu.service.UserInfoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +18,8 @@ import java.util.List;
 public class UserInfoController {
     @Autowired
     private UserInfoService userInfoService;
+    @Autowired
+    private RoleInfoService roleInfoService;
 
 
     /**
@@ -34,11 +38,11 @@ public class UserInfoController {
             }
 
 
-            System.out.println("author:"+userInfo.getUserAuthorization());
+            System.out.println("author:"+userInfo.getRoleName());
             if (myid != null && !"".equals(myid)) {//myid存在表示编辑操作
                 userInfo.setUserId(Integer.parseInt(myid));
                 userInfoService.updateUser(userInfo);
-                System.out.println("authoriz"+userInfo.getUserAuthorization());
+                System.out.println("authoriz"+userInfo.getRoleName());
                 model.addAttribute("msg", "更新操作成功！");
             }else {
                 userInfoService.insertUser(userInfo);
@@ -91,7 +95,7 @@ public class UserInfoController {
      */
     @RequestMapping("roleManager")
     public String roleManager() {
-        return "dataResourceManager";
+        return "roleManager";
     }
 
     /**
@@ -99,9 +103,9 @@ public class UserInfoController {
      *
      * @return
      */
-    @RequestMapping("menuManager")
+    @RequestMapping("dataResourceManager")
     public String menuManager() {
-        return "menuManager";
+        return "dataResourceManager";
     }
 
     /**
@@ -124,6 +128,7 @@ public class UserInfoController {
         //分页查询数据
         List<UserInfo> userList = userInfoService.selectUserByParams(userInfo);
 
+        List<RoleInfo> roleInfoList = roleInfoService.selectAll();
 
         //设置所有用户数量  如果有查询条件则以查询结果数量为准，不然为所有数量
         if (userInfo.getUserNickname() != null && !"".equals(userInfo.getUserNickname())) {
@@ -132,8 +137,10 @@ public class UserInfoController {
             page.setTotalRecord(count);
         }
 
+
         model.addAttribute("page1", page);
         model.addAttribute("userList", userList);
+        model.addAttribute("roleInfoList", roleInfoList);
         model.addAttribute("userInfo1", userInfo);
         return "/userManager";
     }

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为DataResourceDao接口方法提供sql语句配置 -->
+<mapper namespace="online.caoyu.dao.DataResourceDao">
+    <insert id="insertDataResource" parameterType="DataResource">
+        INSERT INTO data_resource(data_resource_id, data_resource_name, data_resource_type, last_updated, data_resource_status, data_resource_file_name)VALUES(#{dataResourceId},#{dataResourceName},#{dataResourceType},#{lastUpdated},#{dataResourceStatus},#{dataResourceFileName})
+    </insert>
+
+    <delete id="deleteDataResource" parameterType="int">
+        DELETE FROM data_resource WHERE data_resource_id=#{dataResourceId}
+    </delete>
+
+    <update id="updateDataResource" parameterType="DataResource">
+        UPDATE data_resource
+        <set>
+            <trim suffixOverrides=",">
+                <if test="dataResourceId!=null and dataResourceId!=''">data_resource_id= #{dataResourceId},</if>
+                <if test="dataResourceName!=null">data_resource_name= #{dataResourceName},</if>
+                <if test="dataResourceType!=null">data_resource_type= #{dataResourceType},</if>
+                <if test="lastUpdated!=null">last_updated= #{lastUpdated},</if>
+                <if test="dataResourceStatus!=null">data_resource_status= #{dataResourceStatus},</if>
+                <if test="dataResourceFileName!=null">data_resource_file_name= #{dataResourceFileName},
+                </if>
+            </trim>
+        </set>
+        where data_resource_id=#{dataResourceId}
+    </update>
+
+    <select id="selectDataResourceById" resultType="DataResource" parameterType="int">
+        SELECT * FROM data_resource WHERE data_resource_id = #{dataResourceId}
+    </select>
+
+    <select id="selectAll" resultType="DataResource">
+        SELECT * FROM data_resource order by data_resource_id ASC
+    </select>
+
+
+    <select id="selectDataResourceCount" resultType="int">
+        select count(*) from data_resource
+    </select>
+</mapper>

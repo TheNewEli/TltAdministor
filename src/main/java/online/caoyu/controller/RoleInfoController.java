@@ -19,15 +19,14 @@ public class RoleInfoController {
 
 
     /**
-     * 删除用户
+     * 删除角色
      *
-     * @param roleName 用户ID
+     * @param roleName 角色ID
      * @return
      */
     @RequestMapping("/del")
     @ResponseBody
     public String del(String roleName) {
-        System.out.println("delllll");
         try {
             roleInfoService.deleteRole(roleName);
         } catch (Exception e) {
@@ -37,7 +36,7 @@ public class RoleInfoController {
     }
 
     /**
-     * 新增或编辑用户信息
+     * 新增或编辑角色信息
      *
      * @param roleInfo
      * @param model
@@ -71,7 +70,7 @@ public class RoleInfoController {
 
 
     /**
-     * 根据ID获取用户
+     * 根据ID获取角色
      *
      * @param roleName
      * @param model
@@ -85,7 +84,7 @@ public class RoleInfoController {
     }
 
     /**
-     * 获取所有用户
+     * 获取所有角色
      *
      * @return
      */
@@ -105,7 +104,7 @@ public class RoleInfoController {
         List<RoleInfo> roleInfoList = roleInfoService.selectRoleByParams(roleInfo);
 
 
-        //设置所有用户数量  如果有查询条件则以查询结果数量为准，不然为所有数量
+        //设置所有角色数量  如果有查询条件则以查询结果数量为准，不然为所有数量
         if (roleInfo.getRoleName() != null && !"".equals(roleInfo.getRoleName())) {
             page.setTotalRecord(roleInfoList.size());
         } else {

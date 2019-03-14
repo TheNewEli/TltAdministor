@@ -8,81 +8,78 @@
 <html>
 <head>
     <title>角色管理</title>
-    <head>
-        <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
-        <!-- 新 Bootstrap 核心 CSS 文件 -->
-        <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
-        <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <script type="text/javascript">
-            //主界面高度自适应
-            $(function () {
-                //top代表顶层窗口对象
-                top.mainHeight();
-                if ('${msg}' != '') {
-                    alert('${msg}');
-                }
-
-            });
-
-            //查询事件
-            function findData() {
-                $('#currentPage').val('1');
-                document.forms[0].submit();
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 新 Bootstrap 核心 CSS 文件 -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        //主界面高度自适应
+        $(function () {
+            //top代表顶层窗口对象
+            top.mainHeight();
+            if ('${msg}' != '') {
+                alert('${msg}');
             }
+        });
 
-            //清空查询条件
-            function clearP() {
-                $("#name").val("");
-                $("#loginName").val("");
-            }
+        //查询事件
+        function findData() {
+            $('#currentPage').val('1');
+            document.forms[0].submit();
+        }
 
-            //删除用户
-            function del(roleName) {
-                if (confirm("确定要删除该角色吗？")) {
-                    $.ajax({
-                        url: "<%=basePath%>role/del",
-                        type: "post",
-                        dataType: "json",
-                        data: {roleName: roleName},
-                        success: function () {
-                            alert("删除成功！");
-                            $("#myform").submit();
-                        },
-                        error: function () {//不知道为什么有时会走error
-                            alert("删除成功！");
-                            $("#myform").submit();
-                        }
-                    });
-                }
-            }
+        //清空查询条件
+        function clearP() {
+            $("#name").val("");
+            $("#loginName").val("");
+        }
 
-            //编辑用户 先获取当前ID用户信息
-            function edit(roleName) {
+        //删除用户
+        function del(roleName) {
+            if (confirm("确定要删除该角色吗？")) {
                 $.ajax({
-                    url: "<%=basePath%>role/selectRoleByName",
+                    url: "<%=basePath%>role/del",
                     type: "post",
                     dataType: "json",
                     data: {roleName: roleName},
-                    success: function (data) {
-                        $("#editModal").modal("show");
-                        $("#roleName2").val(data.roleName);
-                        $("#geographicalSearch2").val(data.geographicalSearch.toString());
-                        $("#hotJobSearch2").val(data.hotJobSearch.toString());
-                        $("#salaryInformationSearch2").val(data.salaryInformationSearch.toString());
-                        $("#occupationRatioDisplay2").val(data.occupationRatioDisplay.toString());
-                        $("#educationSituationDisplay2").val(data.educationSituationDisplay.toString());
-                        $("#talentSalaryDisplay2").val(data.talentSalaryDisplay.toString());
-                        $("#geographicTypeDisplay2").val(data.geographicTypeDisplay.toString());
-                        $("#myName").val(data.roleName);
+                    success: function () {
+                        alert("删除成功！");
+                        $("#myform").submit();
                     },
-                    error: function () {
-                        alert("获取用户数据失败！");
+                    error: function () {//不知道为什么有时会走error
+                        alert("删除成功！");
+                        $("#myform").submit();
                     }
                 });
             }
-        </script>
-    </head>
+        }
+
+        //编辑用户 先获取当前ID用户信息
+        function edit(roleName) {
+            $.ajax({
+                url: "<%=basePath%>role/selectRoleByName",
+                type: "post",
+                dataType: "json",
+                data: {roleName: roleName},
+                success: function (data) {
+                    $("#editModal").modal("show");
+                    $("#roleName2").val(data.roleName);
+                    $("#geographicalSearch2").val(data.geographicalSearch.toString());
+                    $("#hotJobSearch2").val(data.hotJobSearch.toString());
+                    $("#salaryInformationSearch2").val(data.salaryInformationSearch.toString());
+                    $("#occupationRatioDisplay2").val(data.occupationRatioDisplay.toString());
+                    $("#educationSituationDisplay2").val(data.educationSituationDisplay.toString());
+                    $("#talentSalaryDisplay2").val(data.talentSalaryDisplay.toString());
+                    $("#geographicTypeDisplay2").val(data.geographicTypeDisplay.toString());
+                    $("#myName").val(data.roleName);
+                },
+                error: function () {
+                    alert("获取用户数据失败！");
+                }
+            });
+        }
+    </script>
 </head>
 <body>
 <div class="table-responsive">
@@ -118,46 +115,46 @@
                             <td>${status.index+1}</td>
                             <td>${role.roleName}</td>
                             <c:if test="${role.geographicalSearch==true}">
-                                <td><img src="/img/authorized.png" style="height: 15%" alt="已授权"></td>
+                                <td><img src="<%=basePath%>/img/authorized.png" style="height: 15%" alt="已授权"></td>
                             </c:if>
                             <c:if test="${role.geographicalSearch==false}">
-                                <td><img src="/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
+                                <td><img src="<%=basePath%>/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
                             </c:if>
                             <c:if test="${role.hotJobSearch==true}">
-                                <td><img src="/img/authorized.png" style="height: 15%" alt="已授权"></td>
+                                <td><img src="<%=basePath%>/img/authorized.png" style="height: 15%" alt="已授权"></td>
                             </c:if>
                             <c:if test="${role.hotJobSearch==false}">
-                                <td><img src="/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
+                                <td><img src="<%=basePath%>/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
                             </c:if>
                             <c:if test="${role.salaryInformationSearch==true}">
-                                <td><img src="/img/authorized.png" style="height: 15%" alt="已授权"></td>
+                                <td><img src="<%=basePath%>/img/authorized.png" style="height: 15%" alt="已授权"></td>
                             </c:if>
                             <c:if test="${role.salaryInformationSearch==false}">
-                                <td><img src="/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
+                                <td><img src="<%=basePath%>/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
                             </c:if>
                             <c:if test="${role.occupationRatioDisplay==true}">
-                                <td><img src="/img/authorized.png" style="height: 15%" alt="已授权"></td>
+                                <td><img src="<%=basePath%>/img/authorized.png" style="height: 15%" alt="已授权"></td>
                             </c:if>
                             <c:if test="${role.occupationRatioDisplay==false}">
-                                <td><img src="/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
+                                <td><img src="<%=basePath%>/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
                             </c:if>
                             <c:if test="${role.educationSituationDisplay==true}">
-                                <td><img src="/img/authorized.png" style="height: 15%" alt="已授权"></td>
+                                <td><img src="<%=basePath%>/img/authorized.png" style="height: 15%" alt="已授权"></td>
                             </c:if>
                             <c:if test="${role.educationSituationDisplay==false}">
-                                <td><img src="/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
+                                <td><img src="<%=basePath%>/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
                             </c:if>
                             <c:if test="${role.talentSalaryDisplay==true}">
-                                <td><img src="/img/authorized.png" style="height: 15%" alt="已授权"></td>
+                                <td><img src="<%=basePath%>/img/authorized.png" style="height: 15%" alt="已授权"></td>
                             </c:if>
                             <c:if test="${role.talentSalaryDisplay==false}">
-                                <td><img src="/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
+                                <td><img src="<%=basePath%>/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
                             </c:if>
                             <c:if test="${role.geographicTypeDisplay==true}">
-                                <td><img src="/img/authorized.png" style="height: 15%" alt="已授权"></td>
+                                <td><img src="<%=basePath%>/img/authorized.png" style="height: 15%" alt="已授权"></td>
                             </c:if>
                             <c:if test="${role.geographicTypeDisplay==false}">
-                                <td><img src="/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
+                                <td><img src="<%=basePath%>/img/unauthorized.png" style="height: 15%" alt="未授权"></td>
                             </c:if>
                             <td>
                                 <button type="button" class="btn btn-success" onclick="edit('${role.roleName }')">编辑

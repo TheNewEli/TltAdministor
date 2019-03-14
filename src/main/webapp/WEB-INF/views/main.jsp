@@ -23,15 +23,15 @@
             if(obj==1){
                 $("#userManager").attr("class","active");
                 $("#roleManager").attr("class","");
-                $("#menuManager").attr("class","");
+                $("#dataResourceManager").attr("class","");
             }
             if(obj==2){
                 $("#roleManager").attr("class","active");
                 $("#userManager").attr("class","");
-                $("#menuManager").attr("class","");
+                $("#dataResourceManager").attr("class","");
             }
             if(obj==3){
-                $("#menuManager").attr("class","active");
+                $("#dataResourceManager").attr("class","active");
                 $("#roleManager").attr("class","");
                 $("#userManager").attr("class","");
             }
@@ -78,7 +78,7 @@
                 <ul class="nav navbar-nav" id="top" style="font-size: 16px;">
                     <li id="userManager"><a href="javascript:void(0)" onclick="menuClick(1,'<%=basePath%>user/selectAll')">用户管理</a></li>
                     <li id="roleManager"><a href="javascript:void(0)" onclick="menuClick(2,'<%=basePath%>role/selectAll')">角色管理</a></li>
-                    <li id="menuManager"><a href="javascript:void(0)" onclick="menuClick(3,'<%=basePath%>user/dataResourceManager')">数据源管理</a></li>
+                    <li id="dataResourceManager"><a href="javascript:void(0)" onclick="menuClick(3,'<%=basePath%>dataResource/selectAll')">数据源管理</a></li>
                 </ul>
             </div>
         </div>

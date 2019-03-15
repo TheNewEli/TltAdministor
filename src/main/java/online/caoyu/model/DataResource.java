@@ -6,7 +6,8 @@ public class DataResource {
     private int dataResourceId;
     private String dataResourceName;
     private String dataResourceType;
-    private Date lastUpdated;    private String dataResourceStatus;
+    private Date lastUpdated;
+    private String dataResourceStatus;
     private String dataResourceFileName;
 
     public int getDataResourceId() {

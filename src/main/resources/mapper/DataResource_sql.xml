@@ -4,7 +4,7 @@
 <!-- 设置为DataResourceDao接口方法提供sql语句配置 -->
 <mapper namespace="online.caoyu.dao.DataResourceDao">
     <insert id="insertDataResource" parameterType="DataResource">
-        INSERT INTO data_resource(data_resource_id, data_resource_name, data_resource_type, last_updated, data_resource_status, data_resource_file_name)VALUES(#{dataResourceId},#{dataResourceName},#{dataResourceType},#{lastUpdated},#{dataResourceStatus},#{dataResourceFileName})
+        INSERT INTO data_resource(data_resource_name,data_resource_file_name)VALUES (#{dataResourceName},#{dataResourceFileName})
     </insert>
 
     <delete id="deleteDataResource" parameterType="int">

@@ -1,16 +1,19 @@
 package online.caoyu.controller;
 
-import javafx.scene.chart.PieChart;
+
 import online.caoyu.model.DataResource;
-import online.caoyu.model.PageUtil;
-import online.caoyu.model.RoleInfo;
 import online.caoyu.service.DataResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
+
+import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -19,6 +22,44 @@ public class DataResourceController {
     @Autowired
     private DataResourceService dataResourceService;
 
+
+    /**
+     * 停用数据源
+     *
+     * @param dataResourceId 数据源ID
+     * @return
+     */
+    @RequestMapping("/disableDataResource")
+    public String disableDataResource(int dataResourceId) {
+        DataResource dataResource = new DataResource();
+        dataResource.setDataResourceId(dataResourceId);
+        dataResource.setDataResourceStatus("未生效");
+        try {
+            dataResourceService.updateDataResource(dataResource);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/dataResource/selectAll";
+    }
+
+    /**
+     * 启用数据源
+     *
+     * @param dataResourceId 数据源ID
+     * @return
+     */
+    @RequestMapping("/enableDataResource")
+    public String enableDataResource(int dataResourceId) {
+        DataResource dataResource = new DataResource();
+        dataResource.setDataResourceId(dataResourceId);
+        dataResource.setDataResourceStatus("生效中");
+        try {
+            dataResourceService.updateDataResource(dataResource);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return "redirect:/dataResource/selectAll";
+    }
 
     /**
      * 删除数据源
@@ -40,32 +81,15 @@ public class DataResourceController {
     /**
      * 新增或编辑数据源信息
      *
+     * @param file
      * @param dataResource
-     * @param model
      * @return
      */
     @RequestMapping("/addDataResource")
-    public String addDataResource(DataResource dataResource, Model model, String myid) {
-        try {
-            DataResource dataResource1 = dataResourceService.selectDataResourceById(dataResource.getDataResourceId());
-            if (dataResource1 != null) {
-                model.addAttribute("msg", "插入操作失败,该登入名已存在！");
-            }
+    public String addDataResource(MultipartFile file, DataResource dataResource, HttpServletRequest request) throws IOException {
+        dataResource.setDataResourceFileName(file.getOriginalFilename());
+        dataResourceService.insertDataResource(dataResource);
 
-            if (myid != null && !"".equals(myid)) {//myid存在表示编辑操作
-                dataResource.setDataResourceId(Integer.parseInt(myid));
-                dataResourceService.updateDataResource(dataResource);
-                model.addAttribute("msg", "更新操作成功！");
-            } else {
-                dataResourceService.insertDataResource(dataResource);
-                model.addAttribute("msg", "插入操作成功！");
-            }
-
-
-        } catch (Exception e) {
-            model.addAttribute("msg", "操作失败！");
-            e.printStackTrace();
-        }
         return "redirect:/dataResource/selectAll";
     }
 
